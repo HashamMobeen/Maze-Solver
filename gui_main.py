@@ -1,4 +1,6 @@
 """
+Name: Muhammad Hasham Mobeen
+CMS: 516259
 GUI Main - FIXED with Scrollable Panel and Hover Effects
 """
 

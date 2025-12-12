@@ -2,7 +2,6 @@
 Member 1: Husnain Shakil
 Handles maze data structure and validation
 """
-
 import numpy as np
 
 class Maze:
