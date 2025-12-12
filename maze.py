@@ -1,5 +1,4 @@
-"""
-Maze Representation Module
+"""Maze Representation Module
 Member 1: Husnain Shakil
 Handles maze data structure and validation
 """
