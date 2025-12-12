@@ -1,6 +1,10 @@
 """
 Maze Representation Module
+<<<<<<< HEAD
 Member 1: [Your Name]
+=======
+Member 1: Husnain Shakil
+>>>>>>> fa7c126c5b4a8418e51529d5af9da68c18835938
 Handles maze data structure and validation
 """
 

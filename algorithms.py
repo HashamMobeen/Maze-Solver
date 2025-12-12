@@ -1,6 +1,11 @@
 """
 Pathfinding Algorithms Module
+<<<<<<< HEAD
 Member 2: [Your Name]
+=======
+Member 2: Aoun Muhammad Azher
+CMS ID: 509885
+>>>>>>> fa7c126c5b4a8418e51529d5af9da68c18835938
 Implements BFS, DFS, and A* with exploration tracking
 """
 

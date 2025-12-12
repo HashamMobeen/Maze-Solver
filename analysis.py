@@ -1,4 +1,8 @@
 """
+<<<<<<< HEAD
+=======
+Ahmad Mustafa
+>>>>>>> fa7c126c5b4a8418e51529d5af9da68c18835938
 Performance Analysis Module
 """
 
