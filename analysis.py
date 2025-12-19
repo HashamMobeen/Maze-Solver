@@ -1,8 +1,5 @@
 """
-<<<<<<< HEAD
-=======
 Ahmad Mustafa
->>>>>>> fa7c126c5b4a8418e51529d5af9da68c18835938
 Performance Analysis Module
 """
 
@@ -58,7 +55,8 @@ def show_runtime_graph(maze, results):
     algorithms = [r['algorithm'] for r in results]
     runtimes = [r['avg_runtime'] * 1000 for r in results]  # milliseconds
     
-    colors = ['#3498DB', '#E74C3C', '#2ECC71']
+    # Colors for each algorithm (Blue, Red, Green, Purple, Orange)
+    colors = ['#3498DB', '#E74C3C', '#2ECC71', '#9B59B6', '#F39C12']
     
     bars = ax.bar(algorithms, runtimes, color=colors, edgecolor='black', linewidth=2, width=0.6)
     

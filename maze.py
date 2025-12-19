@@ -1,13 +1,7 @@
-"""
-Maze Representation Module
-<<<<<<< HEAD
-Member 1: [Your Name]
-=======
+"""Maze Representation Module
 Member 1: Husnain Shakil
->>>>>>> fa7c126c5b4a8418e51529d5af9da68c18835938
 Handles maze data structure and validation
 """
-
 import numpy as np
 
 class Maze:
@@ -87,3 +81,84 @@ class Maze:
                     visual_grid[r][c] = 3
         
         return visual_grid
+    
+    def set_cell(self, row, col, value):
+        """
+        Set a cell value (for interactive editing)
+        
+        Args:
+            row: Row index
+            col: Column index
+            value: '#' (wall), '.' (path), 'S' (start), 'G' (goal)
+        """
+        if 0 <= row < self.rows and 0 <= col < self.cols:
+            old_value = self.grid[row][col]
+            self.grid[row][col] = value
+            
+            # Update start/goal references
+            if value == 'S':
+                # Clear old start if exists
+                if self.start and self.start != (row, col):
+                    old_r, old_c = self.start
+                    if self.grid[old_r][old_c] == 'S':
+                        self.grid[old_r][old_c] = '.'
+                self.start = (row, col)
+            elif value == 'G':
+                # Clear old goal if exists
+                if self.goal and self.goal != (row, col):
+                    old_r, old_c = self.goal
+                    if self.grid[old_r][old_c] == 'G':
+                        self.grid[old_r][old_c] = '.'
+                self.goal = (row, col)
+            elif old_value == 'S':
+                self.start = None
+            elif old_value == 'G':
+                self.goal = None
+    
+    def get_cell(self, row, col):
+        """Get cell value at position"""
+        if 0 <= row < self.rows and 0 <= col < self.cols:
+            return self.grid[row][col]
+        return None
+    
+    def clear(self):
+        """Clear all walls (keep borders, start, goal)"""
+        for r in range(1, self.rows - 1):
+            for c in range(1, self.cols - 1):
+                if self.grid[r][c] not in ['S', 'G']:
+                    self.grid[r][c] = '.'
+    
+    def to_string(self):
+        """Export maze as string"""
+        return '\n'.join([''.join(row) for row in self.grid])
+    
+    def get_neighbors_sorted(self, row, col, goal):
+        """
+        Return valid neighboring cells sorted by distance to goal (closest first)
+        
+        SORTING OPTIMIZATION: By exploring cells closer to the goal first,
+        algorithms can find the path faster with fewer explored nodes.
+        
+        Args:
+            row: Current row position
+            col: Current column position
+            goal: Tuple (goal_row, goal_col) - the target position
+        
+        Returns:
+            List of (row, col) tuples sorted by Manhattan distance to goal
+        """
+        neighbors = []
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # UP, DOWN, LEFT, RIGHT
+        
+        for dr, dc in directions:
+            new_row, new_col = row + dr, col + dc
+            if self.is_valid(new_row, new_col):
+                # Calculate Manhattan distance to goal
+                distance = abs(new_row - goal[0]) + abs(new_col - goal[1])
+                neighbors.append((distance, (new_row, new_col)))
+        
+        # SORTING: Sort by distance (ascending - closest first)
+        neighbors.sort(key=lambda x: x[0])
+        
+        # Return just the positions (without distances)
+        return [pos for _, pos in neighbors]
